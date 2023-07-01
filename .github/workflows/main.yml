@@ -3,16 +3,22 @@ on:
   push:
     branches: [main]
 jobs:
-  k6_cloud_test:
-    name: k6 cloud test run
+  k6_load_test:
+    name: k6 Load Test
     runs-on: ubuntu-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v1
 
-    - name: Run k6 cloud test
-      uses: k6io/action@v0.1
-      with:
-        filename: load_test.js
-        cloud: true
-        token: ${{ secrets.K6_CLOUD_API_TOKEN }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Run local k6 test
+        uses: grafana/k6-action@v0.2.0
+        with:
+          filename: load_test.js
+          flags: --out json=results.json
+
+      - name: Upload performance test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: k6-summary-report-html
+          path: summary.html
