@@ -14,7 +14,7 @@ jobs:
       - name: Run local k6 test
         uses: grafana/k6-action@v0.2.0
         with:
-          filename: load_test.js
+          filename: test_scripts/load_test.js
           flags: --out json=results.json
 
       - name: Upload performance test results
@@ -34,7 +34,7 @@ jobs:
       - name: Run local k6 test
         uses: grafana/k6-action@v0.2.0
         with:
-          filename: stress_test.js
+          filename: test_scripts/stress_test.js
           flags: --out json=results.json
 
       - name: Upload performance test results
