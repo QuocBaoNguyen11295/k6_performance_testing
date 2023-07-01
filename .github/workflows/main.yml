@@ -3,10 +3,10 @@ on:
   push:
     branches: [main]
 jobs:
-k6_cloud_test:
-  name: k6 cloud test run
-  runs-on: ubuntu-latest
-  steps:
+  k6_cloud_test:
+    name: k6 cloud test run
+    runs-on: ubuntu-latest
+    steps:
     - name: Checkout
       uses: actions/checkout@v1
 
